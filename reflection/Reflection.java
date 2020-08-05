@@ -10,7 +10,7 @@ public class Reflection {
         for (int i = 0; i < num; i++) {
             String methodName = "test" + i;
             Method m = test.getClass().getDeclaredMethod(methodName);
-            if(m != null){
+            if (m != null) {
                 System.out.println(methodName + ":");
                 m.invoke(test);
             }
@@ -30,7 +30,7 @@ class Test {
     }
 
     // 获取Class中Field类
-    public void test1() throws Exception{
+    public void test1() throws Exception {
         Test t = new Test();
         Field f = t.getClass().getDeclaredField("num");
         System.out.printf("Field Test.num -> %s %s %s", f.getName(), f.getType(), Modifier.isPrivate(f.getModifiers()));
@@ -43,7 +43,7 @@ class Test {
     }
 
     // 获取class中的Method
-    public void test2() throws Exception{
+    public void test2() throws Exception {
         Test t = new Test();
         Method m = t.getClass().getDeclaredMethod("sayHello", String.class);
         m.setAccessible(true);
@@ -51,17 +51,17 @@ class Test {
     }
 
     // 获取class的其他信息
-    public void test3() throws Exception{
+    public void test3() throws Exception {
         Class<?> c = Test.class;
         System.out.println("superclass: ");
-        while(c != null){
+        while (c != null) {
             System.out.println("\t" + c.getSuperclass());
             c = c.getSuperclass();
         }
         System.out.println("interfaces: " + Test.class.getInterfaces().length);
     }
 
-    private void sayHello(String name){
+    private void sayHello(String name) {
         System.out.printf("hello, %s!\n", name);
     }
 }

@@ -12,14 +12,15 @@ public class DynamicProxy {
             public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
                 System.out.println("before invoke......");
                 // method.invoke(proxy, args);
-                if(method.getName().equals("sayHello")){
+                if (method.getName().equals("sayHello")) {
                     System.out.println("hello, " + args[0]);
                 }
                 System.out.println("after invoke......");
                 return null;
             }
         };
-        Greeting g = (Greeting)Proxy.newProxyInstance(DynamicProxy.class.getClassLoader(), new Class[]{Greeting.class}, handler);
+        Greeting g = (Greeting) Proxy.newProxyInstance(DynamicProxy.class.getClassLoader(),
+                new Class[] { Greeting.class }, handler);
         g.sayHello("lambdafate");
         g.sayNothing("lambdafate");
     }
@@ -27,5 +28,6 @@ public class DynamicProxy {
 
 interface Greeting {
     public void sayHello(String name);
+
     public void sayNothing(String name);
 }
